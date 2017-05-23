@@ -19,6 +19,8 @@ import java.text.DecimalFormat;
 //TODO czas nie może być ujemny, pauza na onPause?
 //TODO w menu mają być 2 dodatkowe ikonki (jedna widoczna zawsze, druga opcjonalnie, na lewo od trzech kropek)
 //TODO dodać dźwięki przy hitach
+//TODO w GameActivity dodać menu z przyciskami : pauza lub play, restart
+//TODO przerobić czarną krechę na cieńszą, ale z czymś na końcu (czerwonym kółkiem?)
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener{
     DrawView drawView;

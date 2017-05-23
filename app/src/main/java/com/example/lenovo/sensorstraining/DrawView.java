@@ -32,11 +32,27 @@ public class DrawView extends View {
         this.stopY = stopY;
     }
 
+    public void setTargetX(int targetX) {
+        this.targetX = targetX;
+    }
+
+    public void setTargetY(int targetY) {
+        this.targetY = targetY;
+    }
+
+    public void setTargetRadius(int targetRadius) {
+        this.targetRadius = targetRadius;
+    }
+
     public DrawView(Context context) {
         super(context);
+        targetPaint = new Paint();
         linePaint.setColor(Color.WHITE);
         linePaint.setStrokeWidth(5f);
-        targetPaint.setColor(Color.YELLOW);
+        targetPaint.setColor(Color.parseColor("#CD5C5C"));
+        //targetPaint.setStyle(Paint.Style.FILL);
+        //targetPaint.setColor(Color.YELLOW);
+        targetPaint.setStrokeWidth(60f);
         /*centerX = getWidth() / 2;
         centerY = getHeight() / 2;*/
     }
@@ -53,21 +69,27 @@ public class DrawView extends View {
     protected void onDraw(Canvas canvas) {
         centerX = getWidth() / 2;
         centerY = getHeight() / 2;
-        setLineWidth();
-        canvas.drawLine(centerX, centerY, stopX, stopY, linePaint);
-        canvas.drawCircle(targetX, targetY, targetRadius, targetPaint);
+        setPaintStyles();
+        //canvas.drawCircle(centerX + targetX, centerY + targetY, targetRadius, targetPaint);
+        canvas.drawCircle(centerX + targetX, centerY + targetY, targetRadius, targetPaint);
+        //canvas.drawCircle(centerX, centerY, 50, targetPaint);
+        canvas.drawLine(centerX, centerY, centerX + stopX, centerY + stopY, linePaint);
+        //canvas.drawLine(centerX + targetX, centerY + targetY, centerX + targetX + 100, centerY + targetY + 100, targetPaint);
     }
 
     private int lineLength(){
-        return (int) Math.sqrt( (stopX-centerX) * (stopX-centerX) + (stopY-centerY) * (stopY-centerY) );
+        return (int) Math.sqrt( (stopX) * (stopX) + (stopY) * (stopY) );
     }
 
-    private void setLineWidth(){
+    private void setPaintStyles(){
         if(lineLength() < 40){
             linePaint.setStrokeWidth(4f);
         }
         else {
             linePaint.setStrokeWidth(lineLength() / 10);
         }
+        targetPaint.setColor(Color.YELLOW);
     }
+
+
 }
