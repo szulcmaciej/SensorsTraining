@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">SensorsTraining</string>
     <string name="score">Score: </string>
-    <string name="play">play</string>
-    <string name="restart">restart</string>
+    <string name="play">Play</string>
+    <string name="restart">Restart</string>
+    <string name="pause">Pause</string>
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
 </resources>

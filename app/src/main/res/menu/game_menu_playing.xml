@@ -5,6 +5,11 @@
         android:id="@+id/restart"
         android:icon="@android:drawable/ic_menu_rotate"
         android:title="@string/restart"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/pause"
+        android:icon="@android:drawable/ic_media_pause"
+        android:title="@string/pause"
         app:showAsAction="always" />
 
 </menu>

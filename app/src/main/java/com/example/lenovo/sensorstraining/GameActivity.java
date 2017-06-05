@@ -1,6 +1,7 @@
 package com.example.lenovo.sensorstraining;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.hardware.Sensor;
@@ -26,6 +27,11 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     private Game game;
 
 
+    public static void start(Context context){
+        Intent intent = new Intent(context, GameActivity.class);
+        context.startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,27 +41,34 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         game = GameSingleton.getInstance(getApplicationContext());
         game.onStart();
         mBinding.drawView.setBackgroundColor(Color.GRAY);
+        resumeGame();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+/*
         if (accelerometer != null) {
             sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_FASTEST);
         }
-        game.resume();
+*/
+        //game.resume();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        sensorManager.unregisterListener(this);
+        pauseGame();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.game_menu, menu);
+        if (!game.isPaused) {
+            menuInflater.inflate(R.menu.game_menu_playing, menu);
+        } else {
+            menuInflater.inflate(R.menu.game_menu_paused, menu);
+        }
         return true;
     }
 
@@ -64,6 +77,13 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         switch (item.getItemId()){
             case R.id.restart :
                 game.onStart();
+                resumeGame();
+                return true;
+            case R.id.pause :
+                pauseGame();
+                return true;
+            case R.id.play :
+                resumeGame();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -90,12 +110,27 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     private void gameLoop(int sensorX, int sensorY){
         if(!game.isGameOver()){
             game.update(sensorX, sensorY);
-            updateUI(sensorX, sensorY);
+            //updateUI(sensorX, sensorY);
+            updateUI(game.getPlayer().x, game.getPlayer().y);
         }
         else {
             //TODO rób coś jak game over
             sensorManager.unregisterListener(this);
         }
+    }
+
+    private void pauseGame(){
+        game.pause();
+        sensorManager.unregisterListener(this);
+        invalidateOptionsMenu();
+    }
+
+    private void resumeGame(){
+        game.resume();
+        if (accelerometer != null) {
+            sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_FASTEST);
+        }
+        invalidateOptionsMenu();
     }
 
     private void updateUI(int sensorX, int sensorY){
@@ -110,6 +145,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         mBinding.drawView.setTargetX(game.getTarget().x);
         mBinding.drawView.setTargetY(game.getTarget().y);
         mBinding.drawView.setTargetRadius(game.getTargetRadius());
+        mBinding.drawView.setPlayerRadius(game.getPlayerRadius());
         mBinding.drawView.invalidate();
     }
 }

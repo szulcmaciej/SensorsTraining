@@ -12,16 +12,18 @@ import java.util.Random;
 
 public class Game {
     static final float DEFAULT_TOTAL_TIME_SECONDS = 40;
-    static final float DEFAULT_ADDED_TIME_ON_HIT = 0.2f;
+    static final float DEFAULT_ADDED_TIME_ON_HIT = 0.5f;
     static final int DEFAULT_POINTS_PER_HIT = 10;
     static final int DEFAULT_TARGET_RANGE = 200;
     static final int DEFAULT_TARGET_RADIUS = 30;
+    static final int DEFAULT_PLAYER_RADIUS = 12;
 
     private float totalTimeSeconds = DEFAULT_TOTAL_TIME_SECONDS;
     private float addedTimeOnHit = DEFAULT_ADDED_TIME_ON_HIT;
     private int pointsPerHit = DEFAULT_POINTS_PER_HIT;
     private int targetRange = DEFAULT_TARGET_RANGE;
     private int targetRadius = DEFAULT_TARGET_RADIUS;
+    private int playerRadius = DEFAULT_PLAYER_RADIUS;
 
 
 
@@ -61,9 +63,6 @@ public class Game {
 
     //wywoływane przy onSensorChanged()
     public void update(int inputX, int inputY){
-        /*if(!hasStarted){
-            onStart();
-        }*/
         if (!isPaused) {
             long deltaTime = SystemClock.uptimeMillis() - previousTimeMilis;
             previousTimeMilis = SystemClock.uptimeMillis();
@@ -73,7 +72,7 @@ public class Game {
             }
             else {
                 player.set(inputX, inputY);
-                if(target.distance(player) < targetRadius){
+                if(target.distance(player) < targetRadius + playerRadius){
                     onHit();
                 }
             }
@@ -97,7 +96,7 @@ public class Game {
 
     private void onHit(){
         points += pointsPerHit;
-        timeRemainingMilis += addedTimeOnHit;
+        timeRemainingMilis += ((long) addedTimeOnHit * 1000) ;
         setNewTarget();
         playHitSound();
     }
@@ -174,5 +173,18 @@ public class Game {
 
     public void setTargetRadius(int targetRadius) {
         this.targetRadius = targetRadius;
+    }
+
+    public int getPlayerRadius() {
+        return playerRadius;
+    }
+
+    public MyPoint getPlayer() {
+        return player;
+    }
+
+    public void setPlayerRadius(int playerRadius) {
+        this.playerRadius = playerRadius;
+
     }
 }

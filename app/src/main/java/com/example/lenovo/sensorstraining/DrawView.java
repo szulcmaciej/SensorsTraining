@@ -14,7 +14,7 @@ import android.view.View;
 
 public class DrawView extends View {
     Paint linePaint = new Paint();
-    Paint generalPaint = new Paint();
+    Paint playerPaint = new Paint();
     Paint targetPaint = new Paint();
     private int stopX;
     private int stopY;
@@ -23,6 +23,8 @@ public class DrawView extends View {
     private int targetX;
     private int targetY;
     private int targetRadius;
+
+    private int playerRadius;
 
     public void setStopX(int stopX) {
         this.stopX = stopX;
@@ -44,17 +46,12 @@ public class DrawView extends View {
         this.targetRadius = targetRadius;
     }
 
+    public void setPlayerRadius(int playerRadius) {
+        this.playerRadius = playerRadius;
+    }
+
     public DrawView(Context context) {
         super(context);
-        targetPaint = new Paint();
-        linePaint.setColor(Color.WHITE);
-        linePaint.setStrokeWidth(5f);
-        targetPaint.setColor(Color.parseColor("#CD5C5C"));
-        //targetPaint.setStyle(Paint.Style.FILL);
-        //targetPaint.setColor(Color.YELLOW);
-        targetPaint.setStrokeWidth(60f);
-        /*centerX = getWidth() / 2;
-        centerY = getHeight() / 2;*/
     }
 
     public DrawView(Context context, @Nullable AttributeSet attrs) {
@@ -70,11 +67,9 @@ public class DrawView extends View {
         centerX = getWidth() / 2;
         centerY = getHeight() / 2;
         setPaintStyles();
-        //canvas.drawCircle(centerX + targetX, centerY + targetY, targetRadius, targetPaint);
         canvas.drawCircle(centerX + targetX, centerY + targetY, targetRadius, targetPaint);
-        //canvas.drawCircle(centerX, centerY, 50, targetPaint);
         canvas.drawLine(centerX, centerY, centerX + stopX, centerY + stopY, linePaint);
-        //canvas.drawLine(centerX + targetX, centerY + targetY, centerX + targetX + 100, centerY + targetY + 100, targetPaint);
+        canvas.drawCircle(centerX + stopX, centerY + stopY, playerRadius, playerPaint);
     }
 
     private int lineLength(){
@@ -82,14 +77,14 @@ public class DrawView extends View {
     }
 
     private void setPaintStyles(){
-        if(lineLength() < 40){
-            linePaint.setStrokeWidth(4f);
+        if(lineLength() < 100){
+            linePaint.setStrokeWidth(5f);
         }
         else {
-            linePaint.setStrokeWidth(lineLength() / 10);
+            linePaint.setStrokeWidth(lineLength() / 20);
         }
         targetPaint.setColor(Color.YELLOW);
+        playerPaint.setColor(Color.RED);
     }
-
 
 }

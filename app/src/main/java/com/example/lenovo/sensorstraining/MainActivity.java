@@ -1,117 +1,89 @@
 package com.example.lenovo.sensorstraining;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
+import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import java.text.DecimalFormat;
+import com.example.lenovo.sensorstraining.databinding.ActivityMainBinding;
 
-//TODO czas nie może być ujemny, pauza na onPause?
+//NASTĘPNA APKA
+//TODO ma być MENU jak w ćwiczeniu 5 na eportalu
+//TODO mają być sensory, akcelerometr + coś, np. czujnik światła, akcelerometr do przerzucania na kolejny obrazek
+//TODO przykłady: galeria zdjęć, miecz świetlny :), jakiś cookie clicker, może gra w machanie?
+//TODO na za tydzień koncept
+//TODO pomysł: przerobić apkę z akcelerometrem na grę w trafianie w punkty przez machanie telefonem, w menu ustawiać trudność (wielkość punktów, rozrzut punktów), kolory, itp.
+
 //TODO w menu mają być 2 dodatkowe ikonki (jedna widoczna zawsze, druga opcjonalnie, na lewo od trzech kropek)
-//TODO dodać dźwięki przy hitach
-//TODO w GameActivity dodać menu z przyciskami : pauza lub play, restart
-//TODO przerobić czarną krechę na cieńszą, ale z czymś na końcu (czerwonym kółkiem?)
+//TODO jakiś popup albo aktywność Game Over
+//TODO aktywność z ustawieniami
+//TODO menu ma mieć link do ustawień, stronę o autorze, highscores?
+//TODO dodać highscores
+//TODO zmienić styl (np pozostały czas i punkty jakąś fajną czcionką?, pomyśleć nad kolorami)
+//TODO highscores activity
+//TODO game over activity + bundle z wynikiem
+//TODO settings activity
+//TODO author activity
+//NOT TODO jakiś efekt (animacja?) przy hicie/pojawianiu się nowego celu
+//DONE w GameActivity dodać menu z przyciskami : pauza lub play, restart
+//DONE czas nie może być ujemny, pauza na onPause?
+//DONE dodać dźwięki przy hitach
+//DONE przerobić czarną krechę na cieńszą, ale z czymś na końcu (czerwonym kółkiem?)
+//DONE ekran ma się nie wygaszać w czasie gry
+//DONE naprawić restart, bo nie działa po skończeniu czasu (może jakoś połączyć z game over?)
 
-public class MainActivity extends AppCompatActivity implements SensorEventListener{
-    DrawView drawView;
-    SensorManager sensorManager;
-    Sensor accelerometer;
-    LinearLayout linearLayout;
-    private TextView axis0;
-    private TextView axis1;
-    private TextView axis2;
-    private TextView currentGTV;
-    private TextView maxGTV;
-    private float maxG;
+//TODO wykład z RxJavy 5.06 19:00 B4
+
+public class MainActivity extends AppCompatActivity {
+
+    ActivityMainBinding mBinding;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        maxG = 0f;
-
-
-
-        drawView = new DrawView(this);
-        drawView.setBackgroundColor(Color.WHITE);
-        //setContentView(drawView);
-
-        setContentView(R.layout.activity_main);
-        findViewsAndSetListeners();
-        linearLayout.addView(drawView);
-
+        context = this;
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        setButtonListeners();
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        if (accelerometer != null) {
-            sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_FASTEST);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.settings :
+                SettingsActivity.start(context);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        sensorManager.unregisterListener(this);
+
+    private void setButtonListeners() {
+        mBinding.playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GameActivity.start(context);
+            }
+        });
+
+        mBinding.highscoresButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO startHighscoresActivity
+            }
+        });
     }
 
-    @Override
-    public void onSensorChanged(SensorEvent event) {
-        float acceleration0 = event.values[0] / 9.81f;
-        float acceleration1 = event.values[1] / 9.81f;
-        float acceleration2 = event.values[2] / 9.81f;
-
-        int stopX = (int) (-acceleration0 * 200) + drawView.getWidth() / 2;
-        int stopY = (int) (acceleration1 * 200) + drawView.getHeight() / 2;
-
-        float currentG = (float) Math.sqrt( acceleration0*acceleration0 + acceleration1*acceleration1 + acceleration2*acceleration2 );
-        if(currentG > maxG){
-            maxG = currentG;
-        }
-
-        setTexts(acceleration0, acceleration1, acceleration2, currentG, maxG);
-        draw(stopX, stopY);
-    }
-
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-    }
-
-    private void draw(int stopX, int stopY){
-        drawView.setStopX(stopX);
-        drawView.setStopY(stopY);
-        drawView.invalidate();
-    }
-
-    private void findViewsAndSetListeners(){
-        axis0 = (TextView) findViewById(R.id.axis0);
-        axis1 = (TextView) findViewById(R.id.axis1);
-        axis2 = (TextView) findViewById(R.id.axis2);
-        currentGTV = (TextView) findViewById(R.id.currentG);
-        maxGTV = (TextView) findViewById(R.id.maxG);
-        linearLayout = (LinearLayout) findViewById(R.id.linearLayoutMain);
-    }
-
-    private void setTexts(float a0, float a1, float a2, float currentG, float maxG){
-        axis0.setText("X: " + new DecimalFormat("#.##").format(a0));
-        axis1.setText("Y: " + new DecimalFormat("#.##").format(a1));
-        axis2.setText("Z: " + new DecimalFormat("#.##").format(a2));
-        String currentGString = "Current G: " + (new DecimalFormat("#.##").format(currentG));
-        String maxGString = "Max G: " + (new DecimalFormat("#.##").format(maxG));
-        currentGTV.setText(currentGString);
-        maxGTV.setText(maxGString);
-    }
 }
