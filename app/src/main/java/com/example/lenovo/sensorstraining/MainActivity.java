@@ -19,7 +19,7 @@ import com.example.lenovo.sensorstraining.databinding.ActivityMainBinding;
 //TODO pomysł: przerobić apkę z akcelerometrem na grę w trafianie w punkty przez machanie telefonem, w menu ustawiać trudność (wielkość punktów, rozrzut punktów), kolory, itp.
 
 //TODO w menu mają być 2 dodatkowe ikonki (jedna widoczna zawsze, druga opcjonalnie, na lewo od trzech kropek)
-//TODO jakiś popup albo aktywność Game Over
+//TODO jakiś popup albo aktywność Game Over + dźwięk
 //TODO aktywność z ustawieniami
 //TODO menu ma mieć link do ustawień, stronę o autorze, highscores?
 //TODO dodać highscores
@@ -28,6 +28,7 @@ import com.example.lenovo.sensorstraining.databinding.ActivityMainBinding;
 //TODO game over activity + bundle z wynikiem
 //TODO settings activity
 //TODO author activity
+//TODO wartości trudności wywalić do odobnej klasy
 //NOT TODO jakiś efekt (animacja?) przy hicie/pojawianiu się nowego celu
 //DONE w GameActivity dodać menu z przyciskami : pauza lub play, restart
 //DONE czas nie może być ujemny, pauza na onPause?
@@ -35,8 +36,6 @@ import com.example.lenovo.sensorstraining.databinding.ActivityMainBinding;
 //DONE przerobić czarną krechę na cieńszą, ale z czymś na końcu (czerwonym kółkiem?)
 //DONE ekran ma się nie wygaszać w czasie gry
 //DONE naprawić restart, bo nie działa po skończeniu czasu (może jakoś połączyć z game over?)
-
-//TODO wykład z RxJavy 5.06 19:00 B4
 
 public class MainActivity extends AppCompatActivity {
 

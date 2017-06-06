@@ -25,6 +25,11 @@ public class Game {
     private int targetRadius = DEFAULT_TARGET_RADIUS;
     private int playerRadius = DEFAULT_PLAYER_RADIUS;
 
+    public enum  Difficulty{
+        EASY,
+        MEDIUM,
+        HARD
+    }
 
 
     private long timeRemainingMilis;
@@ -51,7 +56,8 @@ public class Game {
     }
 
 
-    public void onStart(){
+    public void onStart(int difficulty){
+        setDifficulty(difficulty);
         previousTimeMilis = SystemClock.uptimeMillis();
         timeRemainingMilis = (long) (1000 * totalTimeSeconds);
         setNewTarget();
@@ -59,6 +65,30 @@ public class Game {
         points = 0;
         gameOver = false;
         isPaused = false;
+    }
+
+    private void setDifficulty(int difficulty) {
+        if(difficulty == Game.Difficulty.EASY.ordinal()){
+            setPlayerRadius(22);
+            setAddedTimeOnHit(1f);
+            setTargetRadius(40);
+            setTargetRange(150);
+            setTotalTimeSeconds(40);
+        }
+        if(difficulty == Game.Difficulty.MEDIUM.ordinal()){
+            setPlayerRadius(12);
+            setAddedTimeOnHit(0.5f);
+            setTargetRadius(30);
+            setTargetRange(200);
+            setTotalTimeSeconds(30);
+        }
+        if(difficulty == Game.Difficulty.HARD.ordinal()){
+            setPlayerRadius(8);
+            setAddedTimeOnHit(0.2f);
+            setTargetRadius(18);
+            setTargetRange(250);
+            setTotalTimeSeconds(20);
+        }
     }
 
     //wywoływane przy onSensorChanged()
@@ -84,9 +114,10 @@ public class Game {
         int newY = random.nextInt(targetRange * 2) - targetRange;
         target.set(newX, newY);
 
-        if(target.distance(0, 0) < targetRadius){
+        if(target.distance(player) < targetRadius + playerRadius){
             setNewTarget();
         }
+
     }
 
     private void gameOver(){

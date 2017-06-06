@@ -2,6 +2,7 @@ package com.example.lenovo.sensorstraining;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.hardware.Sensor;
@@ -25,6 +26,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     private SensorManager sensorManager;
     private Sensor accelerometer;
     private Game game;
+    private SharedPreferences sharedPrefs;
 
 
     public static void start(Context context){
@@ -38,8 +40,10 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_game);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sharedPrefs = getPreferences(Context.MODE_PRIVATE);
         game = GameSingleton.getInstance(getApplicationContext());
-        game.onStart();
+        int difficulty = sharedPrefs.getInt("difficulty", Game.Difficulty.EASY.ordinal());
+        game.onStart(difficulty);
         mBinding.drawView.setBackgroundColor(Color.GRAY);
         resumeGame();
     }
@@ -76,7 +80,11 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.restart :
-                game.onStart();
+                int difficulty = sharedPrefs.getInt("difficulty", Game.Difficulty.EASY.ordinal());
+                //tak ma być
+                game.onStart(difficulty);
+                //tak nie ma być
+                //game.onStart(Game.Difficulty.HARD.ordinal());
                 resumeGame();
                 return true;
             case R.id.pause :

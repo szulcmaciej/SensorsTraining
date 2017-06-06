@@ -67,8 +67,8 @@ public class DrawView extends View {
         centerX = getWidth() / 2;
         centerY = getHeight() / 2;
         setPaintStyles();
-        canvas.drawCircle(centerX + targetX, centerY + targetY, targetRadius, targetPaint);
         canvas.drawLine(centerX, centerY, centerX + stopX, centerY + stopY, linePaint);
+        canvas.drawCircle(centerX + targetX, centerY + targetY, targetRadius, targetPaint);
         canvas.drawCircle(centerX + stopX, centerY + stopY, playerRadius, playerPaint);
     }
 
