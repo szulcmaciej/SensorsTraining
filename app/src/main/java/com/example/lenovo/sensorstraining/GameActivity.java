@@ -40,7 +40,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_game);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        sharedPrefs = getPreferences(Context.MODE_PRIVATE);
+        sharedPrefs = getSharedPreferences("settings", Context.MODE_PRIVATE);
         game = GameSingleton.getInstance(getApplicationContext());
         int difficulty = sharedPrefs.getInt("difficulty", Game.Difficulty.EASY.ordinal());
         game.onStart(difficulty);
@@ -68,7 +68,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        if (!game.isPaused) {
+        if (!game.isPaused()) {
             menuInflater.inflate(R.menu.game_menu_playing, menu);
         } else {
             menuInflater.inflate(R.menu.game_menu_paused, menu);

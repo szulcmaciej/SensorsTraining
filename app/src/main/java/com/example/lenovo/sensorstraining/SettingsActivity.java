@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.example.lenovo.sensorstraining.databinding.ActivitySettingsBinding;
 
@@ -29,12 +30,10 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_settings);
-        setContentView(R.layout.activity_settings);
         game = GameSingleton.getInstance(this);
-        sharedPrefs = getPreferences(Context.MODE_PRIVATE);
+        sharedPrefs = getSharedPreferences("settings", Context.MODE_PRIVATE);
         setRadioGroupFromSharedPrefs();
         setListeners();
-
     }
 
     private void setListeners() {
@@ -55,27 +54,6 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
     }
-
-/*
-    public void onRadioButtonClicked(View view){
-        boolean checked = ((RadioButton) view).isChecked();
-
-        switch(view.getId()) {
-            case R.id.easyRadioButton:
-                if (checked)
-                    saveDifficultyToSharedPrefs(Game.Difficulty.EASY);
-                    break;
-            case R.id.mediumRadioButton:
-                if (checked)
-                    saveDifficultyToSharedPrefs(Game.Difficulty.MEDIUM);
-                    break;
-            case R.id.hardRadioButton:
-                if (checked)
-                    saveDifficultyToSharedPrefs(Game.Difficulty.HARD);
-                    break;
-        }
-    }
-*/
 
     private void saveDifficultyToSharedPrefs(Game.Difficulty difficulty){
         SharedPreferences.Editor editor = sharedPrefs.edit();

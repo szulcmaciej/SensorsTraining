@@ -1,6 +1,7 @@
 package com.example.lenovo.sensorstraining;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,16 +21,17 @@ import com.example.lenovo.sensorstraining.databinding.ActivityMainBinding;
 
 //TODO w menu mają być 2 dodatkowe ikonki (jedna widoczna zawsze, druga opcjonalnie, na lewo od trzech kropek)
 //TODO jakiś popup albo aktywność Game Over + dźwięk
-//TODO aktywność z ustawieniami
-//TODO menu ma mieć link do ustawień, stronę o autorze, highscores?
 //TODO dodać highscores
-//TODO zmienić styl (np pozostały czas i punkty jakąś fajną czcionką?, pomyśleć nad kolorami)
 //TODO highscores activity
 //TODO game over activity + bundle z wynikiem
-//TODO settings activity
 //TODO author activity
 //TODO wartości trudności wywalić do odobnej klasy
+//TODO zmienić styl (np pozostały czas i punkty jakąś fajną czcionką?, pomyśleć nad kolorami)
+//TODO dodać logo apki
+//TODO może zmienić metodę setNewTarget() na efektywniejszą?
 //NOT TODO jakiś efekt (animacja?) przy hicie/pojawianiu się nowego celu
+//DONE menu ma mieć link do ustawień, stronę o autorze, highscores?
+//DONE aktywność z ustawieniami
 //DONE w GameActivity dodać menu z przyciskami : pauza lub play, restart
 //DONE czas nie może być ujemny, pauza na onPause?
 //DONE dodać dźwięki przy hitach

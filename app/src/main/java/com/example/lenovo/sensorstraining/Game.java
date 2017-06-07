@@ -36,16 +36,17 @@ public class Game {
     private long previousTimeMilis;
 
     private int points;
-    boolean gameOver;
-    boolean hasStarted;
-    boolean isPaused;
+    private long elapsedTimeMilis;
+    private boolean gameOver;
+    private boolean hasStarted;
+    private boolean isPaused;
 
-    MyPoint target;
-    MyPoint player;
+    private MyPoint target;
+    private MyPoint player;
+    
     private static MediaPlayer hitSoundPlayer;
-
-    Random random;
-    Context context;
+    private Random random;
+    private Context context;
 
     public Game(Context context) {
         this.context = context;
@@ -55,7 +56,6 @@ public class Game {
         hitSoundPlayer = MediaPlayer.create(context, R.raw.gunshot);
     }
 
-
     public void onStart(int difficulty){
         setDifficulty(difficulty);
         previousTimeMilis = SystemClock.uptimeMillis();
@@ -63,9 +63,11 @@ public class Game {
         setNewTarget();
         hasStarted = true;
         points = 0;
+        elapsedTimeMilis = 0;
         gameOver = false;
         isPaused = false;
     }
+
 
     private void setDifficulty(int difficulty) {
         if(difficulty == Game.Difficulty.EASY.ordinal()){
@@ -93,10 +95,11 @@ public class Game {
 
     //wywoływane przy onSensorChanged()
     public void update(int inputX, int inputY){
-        if (!isPaused) {
+        if (!isPaused && !gameOver) {
             long deltaTime = SystemClock.uptimeMillis() - previousTimeMilis;
             previousTimeMilis = SystemClock.uptimeMillis();
             timeRemainingMilis -= deltaTime;
+            elapsedTimeMilis += deltaTime;
             if(timeRemainingMilis <= 0){
                 gameOver();
             }
@@ -217,5 +220,9 @@ public class Game {
     public void setPlayerRadius(int playerRadius) {
         this.playerRadius = playerRadius;
 
+    }
+
+    public boolean isPaused() {
+        return isPaused;
     }
 }
