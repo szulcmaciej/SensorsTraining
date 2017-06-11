@@ -47,6 +47,7 @@ public class Game {
     private MyPoint player;
     
     private static MediaPlayer hitSoundPlayer;
+    private MediaPlayer backgroundMusicPlayer;
     private Random random;
     private Context context;
 
@@ -55,7 +56,11 @@ public class Game {
         random = new Random();
         target = new MyPoint();
         player = new MyPoint();
-        hitSoundPlayer = MediaPlayer.create(context, R.raw.gunshot);
+        hitSoundPlayer = MediaPlayer.create(context, R.raw.hit);
+        //hitSoundPlayer = MediaPlayer.create(context, R.raw.gunshot);
+        backgroundMusicPlayer = MediaPlayer.create(context, R.raw.background_loop);
+        backgroundMusicPlayer.setLooping(true);
+        backgroundMusicPlayer.start();
     }
 
     public void onStart(int difficulty){
@@ -171,18 +176,35 @@ public class Game {
 
     public void pause(){
         isPaused = true;
+        backgroundMusicPlayer.stop();
     }
 
     public void resume(){
         previousTimeMilis = SystemClock.uptimeMillis();
         isPaused = false;
+/*
+        if(backgroundMusicPlayer.isPlaying()){
+            backgroundMusicPlayer.stop();
+            backgroundMusicPlayer.release();
+            backgroundMusicPlayer = MediaPlayer.create(context, R.raw.background_loop);
+            backgroundMusicPlayer.setLooping(true);
+        }
+*/
+
+        backgroundMusicPlayer.stop();
+        backgroundMusicPlayer.release();
+        backgroundMusicPlayer = MediaPlayer.create(context, R.raw.background_loop);
+        backgroundMusicPlayer.setLooping(true);
+
+        backgroundMusicPlayer.start();
     }
 
     private void playHitSound(){
         if(hitSoundPlayer.isPlaying()){
             hitSoundPlayer.stop();
             hitSoundPlayer.release();
-            hitSoundPlayer = MediaPlayer.create(context, R.raw.gunshot);
+            hitSoundPlayer = MediaPlayer.create(context, R.raw.hit);
+            //hitSoundPlayer = MediaPlayer.create(context, R.raw.gunshot);
         }
         hitSoundPlayer.start();
     }

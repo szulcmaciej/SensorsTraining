@@ -10,18 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="104ecb96-f37e-4718-bc62-f9cc453861be" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/GameOverActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_game_over.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/Game.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/GameActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/GameActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/HighscoresActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/HighscoresActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/GameOverActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/GameOverActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/SettingsActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/SettingsActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_highscores.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_highscores.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_settings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
     </list>
     <ignored path="SensorsTraining.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,11 +45,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+            <state relative-caret-position="288">
+              <caret line="35" column="44" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -65,25 +57,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HighscoresActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/HighscoresActivity.java">
+      <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
-              <folding />
+            <state relative-caret-position="335">
+              <caret line="62" column="38" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
+              <folding>
+                <element signature="method#setTotalTimeSeconds#0;class#Game#0" expanded="false" />
+                <element signature="method#setPlayerRadius#0;class#Game#0" expanded="false" />
+                <element signature="e#7330#7331#0" expanded="true" />
+                <element signature="e#7363#7364#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_highscores.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_highscores.xml">
-          <provider selected="true" editor-type-id="android-designer2">
-            <state />
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="44" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
-              <folding />
+      <file leaf-file-name="GameOverActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/GameOverActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="53" column="28" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="28" />
+              <folding>
+                <element signature="e#1815#1957#0" expanded="true" />
+                <element signature="e#1956#1957#0" expanded="true" />
+                <element signature="method#setFields#0;class#GameOverActivity#0" expanded="false" />
+                <element signature="method#setHighscoreLabelVisibleAndSaveHighscoreIfNewHighscore#0;class#GameOverActivity#0" expanded="false" />
+                <element signature="method#setTexts#0;class#GameOverActivity#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1978,16 +1978,16 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/MyApplication.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/database/DatabaseManager.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_settings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/Game.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/SettingsActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/GameActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_game_over.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/GameOverActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_highscores.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/HighscoresActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/GameOverActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/Game.java" />
       </list>
     </option>
   </component>
@@ -2864,20 +2864,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1602">
-          <caret line="242" column="39" selection-start-line="242" selection-start-column="39" selection-end-line="242" selection-end-column="39" />
-          <folding>
-            <element signature="method#resume#0;class#Game#0" expanded="false" />
-            <element signature="method#playHitSound#0;class#Game#0" expanded="false" />
-            <element signature="method#setTotalTimeSeconds#0;class#Game#0" expanded="false" />
-            <element signature="method#setPlayerRadius#0;class#Game#0" expanded="false" />
-            <element signature="e#6427#6428#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -2965,22 +2951,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/GameOverActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="43" column="41" selection-start-line="43" selection-start-column="41" selection-end-line="43" selection-end-column="41" />
-          <folding>
-            <element signature="e#1563#1564#0" expanded="true" />
-            <element signature="e#1616#1777#0" expanded="true" />
-            <element signature="e#1776#1777#0" expanded="true" />
-            <element signature="method#setFields#0;class#GameOverActivity#0" expanded="false" />
-            <element signature="method#setHighscoreLabelVisibleAndSaveHighscoreIfNewHighscore#0;class#GameOverActivity#0" expanded="false" />
-            <element signature="method#setTexts#0;class#GameOverActivity#0" expanded="false" />
-            <element signature="method#isNewHighscore#0;class#GameOverActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build/intermediates/data-binding-layout-out/debug/layout/activity_highscores.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -2989,12 +2959,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/GameActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/SettingsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1475">
-          <caret line="122" column="51" selection-start-line="122" selection-start-column="51" selection-end-line="122" selection-end-column="51" />
+        <state relative-caret-position="289">
+          <caret line="33" column="78" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="78" />
           <folding>
-            <element signature="method#onAccuracyChanged#0;class#GameActivity#0" expanded="false" />
+            <element signature="method#start#0;class#SettingsActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3010,16 +2980,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/SettingsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="33" column="78" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="78" />
-          <folding>
-            <element signature="method#start#0;class#SettingsActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/HighscoresActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -3028,12 +2988,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/GameActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="557">
+          <caret line="122" column="51" selection-start-line="122" selection-start-column="51" selection-end-line="122" selection-end-column="51" />
+          <folding>
+            <element signature="method#onAccuracyChanged#0;class#GameActivity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/GameOverActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="53" column="28" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="28" />
+          <folding>
+            <element signature="e#1815#1957#0" expanded="true" />
+            <element signature="e#1956#1957#0" expanded="true" />
+            <element signature="method#setFields#0;class#GameOverActivity#0" expanded="false" />
+            <element signature="method#setHighscoreLabelVisibleAndSaveHighscoreIfNewHighscore#0;class#GameOverActivity#0" expanded="false" />
+            <element signature="method#setTexts#0;class#GameOverActivity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+        <state relative-caret-position="288">
+          <caret line="35" column="44" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/lenovo/sensorstraining/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="62" column="38" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
+          <folding>
+            <element signature="method#setTotalTimeSeconds#0;class#Game#0" expanded="false" />
+            <element signature="method#setPlayerRadius#0;class#Game#0" expanded="false" />
+            <element signature="e#7330#7331#0" expanded="true" />
+            <element signature="e#7363#7364#0" expanded="true" />
           </folding>
         </state>
       </provider>

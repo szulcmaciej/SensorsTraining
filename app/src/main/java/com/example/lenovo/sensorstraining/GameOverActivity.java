@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,9 @@ public class GameOverActivity extends AppCompatActivity {
 
     private int score;
     private Game.Difficulty difficulty;
+    boolean isNewHighscore;
+
+    private MediaPlayer mediaPlayer;
 
     ActivityGameOverBinding mBinding;
     SharedPreferences sharedPrefs;
@@ -36,6 +40,18 @@ public class GameOverActivity extends AppCompatActivity {
         setHighscoreLabelVisibleAndSaveHighscoreIfNewHighscore();
         setTexts();
         setButtonListeners();
+        playSound();
+    }
+
+    private void playSound() {
+        if(isNewHighscore){
+            mediaPlayer = MediaPlayer.create(this, R.raw.new_highscore);
+        }
+        else{
+            mediaPlayer = MediaPlayer.create(this, R.raw.game_over);
+        }
+
+        mediaPlayer.start();
     }
 
     private void setButtonListeners() {
@@ -81,7 +97,7 @@ public class GameOverActivity extends AppCompatActivity {
     private boolean isNewHighscore(int score, Game.Difficulty difficulty){
         String oldHighscoreName = "highscore" + difficulty.name();
         int oldHighscore = sharedPrefs.getInt(oldHighscoreName, 0);
-        return score > oldHighscore;
+        return isNewHighscore = score > oldHighscore;
     }
 
 

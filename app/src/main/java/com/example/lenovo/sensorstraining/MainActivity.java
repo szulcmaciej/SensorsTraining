@@ -26,7 +26,7 @@ import com.example.lenovo.sensorstraining.databinding.ActivityMainBinding;
 //DONE highscores activity
 //DONE game over activity + bundle z wynikiem
 //TODO author activity
-//TODO wartości trudności wywalić do osdobnej klasy
+//TODO wartości trudności wywalić do osobnej klasy
 //TODO zmienić styl (np pozostały czas i punkty jakąś fajną czcionką?, pomyśleć nad kolorami)
 //TODO może zmienić metodę setNewTarget() na efektywniejszą?
 //TODO dźwięki! dużo dźwięków! jeszcze więcej dźwięków!
