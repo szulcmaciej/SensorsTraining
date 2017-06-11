@@ -31,7 +31,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_settings);
         game = GameSingleton.getInstance(this);
-        sharedPrefs = getSharedPreferences("settings", Context.MODE_PRIVATE);
+        sharedPrefs = getSharedPreferences("game_data", Context.MODE_PRIVATE);
         setRadioGroupFromSharedPrefs();
         setListeners();
     }
@@ -50,6 +50,9 @@ public class SettingsActivity extends AppCompatActivity {
                     case R.id.hardRadioButton:
                         saveDifficultyToSharedPrefs(Game.Difficulty.HARD);
                         break;
+                    case R.id.extremeRadioButton:
+                        saveDifficultyToSharedPrefs(Game.Difficulty.EXTREME);
+                        break;
                 }
             }
         });
@@ -58,7 +61,7 @@ public class SettingsActivity extends AppCompatActivity {
     private void saveDifficultyToSharedPrefs(Game.Difficulty difficulty){
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putInt("difficulty", difficulty.ordinal());
-        editor.commit();
+        editor.apply();
     }
 
     private void setRadioGroupFromSharedPrefs(){
@@ -73,6 +76,9 @@ public class SettingsActivity extends AppCompatActivity {
         }
         if(difficulty == Game.Difficulty.HARD.ordinal()){
             selectedRadioButtonId = R.id.hardRadioButton;
+        }
+        if(difficulty == Game.Difficulty.EXTREME.ordinal()){
+            selectedRadioButtonId = R.id.extremeRadioButton;
         }
 
         mBinding.difficultyRadioGroup.check(selectedRadioButtonId);

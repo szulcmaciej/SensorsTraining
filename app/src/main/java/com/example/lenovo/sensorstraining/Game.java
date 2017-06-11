@@ -28,7 +28,8 @@ public class Game {
     public enum  Difficulty{
         EASY,
         MEDIUM,
-        HARD
+        HARD,
+        EXTREME
     }
 
 
@@ -40,6 +41,7 @@ public class Game {
     private boolean gameOver;
     private boolean hasStarted;
     private boolean isPaused;
+    private Difficulty difficulty;
 
     private MyPoint target;
     private MyPoint player;
@@ -71,29 +73,41 @@ public class Game {
 
     private void setDifficulty(int difficulty) {
         if(difficulty == Game.Difficulty.EASY.ordinal()){
+            this.difficulty = Difficulty.EASY;
             setPlayerRadius(22);
-            setAddedTimeOnHit(1f);
+            setAddedTimeOnHit(0.5f);
             setTargetRadius(40);
-            setTargetRange(150);
-            setTotalTimeSeconds(40);
+            setTargetRange(180);
+            setTotalTimeSeconds(30);
         }
         if(difficulty == Game.Difficulty.MEDIUM.ordinal()){
+            this.difficulty = Difficulty.MEDIUM;
             setPlayerRadius(12);
             setAddedTimeOnHit(0.5f);
             setTargetRadius(30);
-            setTargetRange(200);
+            setTargetRange(210);
             setTotalTimeSeconds(30);
         }
         if(difficulty == Game.Difficulty.HARD.ordinal()){
-            setPlayerRadius(8);
-            setAddedTimeOnHit(0.2f);
-            setTargetRadius(18);
+            this.difficulty = Difficulty.HARD;
+            setPlayerRadius(10);
+            setAddedTimeOnHit(0.5f);
+            setTargetRadius(25);
             setTargetRange(250);
             setTotalTimeSeconds(20);
+        }
+        if(difficulty == Difficulty.EXTREME.ordinal()){
+            this.difficulty = Difficulty.EXTREME;
+            setPlayerRadius(8);
+            setAddedTimeOnHit(0.5f);
+            setTargetRadius(15);
+            setTargetRange(250);
+            setTotalTimeSeconds(10);
         }
     }
 
     //wywoływane przy onSensorChanged()
+
     public void update(int inputX, int inputY){
         if (!isPaused && !gameOver) {
             long deltaTime = SystemClock.uptimeMillis() - previousTimeMilis;
@@ -130,7 +144,7 @@ public class Game {
 
     private void onHit(){
         points += pointsPerHit;
-        timeRemainingMilis += ((long) addedTimeOnHit * 1000) ;
+        timeRemainingMilis += ((long) (addedTimeOnHit * 1000)) ;
         setNewTarget();
         playHitSound();
     }
@@ -224,5 +238,9 @@ public class Game {
 
     public boolean isPaused() {
         return isPaused;
+    }
+
+    public Difficulty getDifficulty() {
+        return difficulty;
     }
 }

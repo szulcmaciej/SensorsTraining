@@ -25,9 +25,18 @@
         <activity
             android:name=".GameActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".HighscoresActivity"></activity>
+            android:screenOrientation="portrait"
+            android:noHistory="true"/>
+        <activity android:name=".SettingsActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".HighscoresActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".GameOverActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:noHistory="true"/>
     </application>
 
 </manifest>

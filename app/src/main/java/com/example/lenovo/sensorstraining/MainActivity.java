@@ -19,17 +19,23 @@ import com.example.lenovo.sensorstraining.databinding.ActivityMainBinding;
 //TODO na za tydzień koncept
 //TODO pomysł: przerobić apkę z akcelerometrem na grę w trafianie w punkty przez machanie telefonem, w menu ustawiać trudność (wielkość punktów, rozrzut punktów), kolory, itp.
 
-//TODO w menu mają być 2 dodatkowe ikonki (jedna widoczna zawsze, druga opcjonalnie, na lewo od trzech kropek)
+//DONE dodać poziom trudności extreme i hard zrobić łatwiejszy
+//DONE w menu mają być 2 dodatkowe ikonki (jedna widoczna zawsze, druga opcjonalnie, na lewo od trzech kropek)
 //TODO jakiś popup albo aktywność Game Over + dźwięk
-//TODO dodać highscores
-//TODO highscores activity
-//TODO game over activity + bundle z wynikiem
+//DONE dodać highscores (w sharedprefsach 1 highscore dla każdego poziomu trudności))
+//DONE highscores activity
+//DONE game over activity + bundle z wynikiem
 //TODO author activity
-//TODO wartości trudności wywalić do odobnej klasy
+//TODO wartości trudności wywalić do osdobnej klasy
 //TODO zmienić styl (np pozostały czas i punkty jakąś fajną czcionką?, pomyśleć nad kolorami)
-//TODO dodać logo apki
 //TODO może zmienić metodę setNewTarget() na efektywniejszą?
-//NOT TODO jakiś efekt (animacja?) przy hicie/pojawianiu się nowego celu
+//TODO dźwięki! dużo dźwięków! jeszcze więcej dźwięków!
+//TODO dźwięki przy game over, new highscore, jakaś zapętlona muzyczka w tle, dźwięk przy początku gry
+//TODO dodać logo apki
+//TODO ikonka i nazwa
+//TODO porządek w layoutach (stringi, style)
+//TODO (?) share button w GameOverActivity
+//NOTTODO jakiś efekt (animacja?) przy hicie/pojawianiu się nowego celu
 //DONE menu ma mieć link do ustawień, stronę o autorze, highscores?
 //DONE aktywność z ustawieniami
 //DONE w GameActivity dodać menu z przyciskami : pauza lub play, restart
@@ -82,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         mBinding.highscoresButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO startHighscoresActivity
+                HighscoresActivity.start(context);
             }
         });
     }

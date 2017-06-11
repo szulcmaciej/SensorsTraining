@@ -40,7 +40,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_game);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        sharedPrefs = getSharedPreferences("settings", Context.MODE_PRIVATE);
+        sharedPrefs = getSharedPreferences("game_data", Context.MODE_PRIVATE);
         game = GameSingleton.getInstance(getApplicationContext());
         int difficulty = sharedPrefs.getInt("difficulty", Game.Difficulty.EASY.ordinal());
         game.onStart(difficulty);
@@ -81,10 +81,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         switch (item.getItemId()){
             case R.id.restart :
                 int difficulty = sharedPrefs.getInt("difficulty", Game.Difficulty.EASY.ordinal());
-                //tak ma być
                 game.onStart(difficulty);
-                //tak nie ma być
-                //game.onStart(Game.Difficulty.HARD.ordinal());
                 resumeGame();
                 return true;
             case R.id.pause :
@@ -124,6 +121,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         else {
             //TODO rób coś jak game over
             sensorManager.unregisterListener(this);
+            GameOverActivity.start(this, game.getPoints(), game.getDifficulty());
         }
     }
 

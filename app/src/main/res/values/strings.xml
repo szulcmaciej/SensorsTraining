@@ -1,9 +1,15 @@
 <resources>
     <string name="app_name">SensorsTraining</string>
-    <string name="score">Score: </string>
+    <string name="score">Score </string>
     <string name="play">Play</string>
     <string name="restart">Restart</string>
     <string name="pause">Pause</string>
     <string name="settings">Settings</string>
     <string name="about">About</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
+    <string name="extreme">Extreme</string>
+    <string name="highscore">Highscore</string>
+    <string name="game_over">Game Over</string>
 </resources>
