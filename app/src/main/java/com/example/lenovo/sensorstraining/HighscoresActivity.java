@@ -12,6 +12,7 @@ import com.example.lenovo.sensorstraining.databinding.ActivityHighscoresBinding;
 
 public class HighscoresActivity extends AppCompatActivity {
 
+    public static final String SHARED_PREFS_NAME = "game_data";
     ActivityHighscoresBinding mBinding;
     SharedPreferences sharedPrefs;
 
@@ -24,7 +25,7 @@ public class HighscoresActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_highscores);
-        sharedPrefs = getSharedPreferences("game_data", Context.MODE_PRIVATE);
+        sharedPrefs = getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
         setTexts();
     }
 

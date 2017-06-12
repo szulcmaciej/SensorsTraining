@@ -4,21 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
-import android.databinding.adapters.RadioGroupBindingAdapter;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.example.lenovo.sensorstraining.databinding.ActivitySettingsBinding;
 
 public class SettingsActivity extends AppCompatActivity {
 
+    public static final String SHARED_PREFS_NAME = "game_data";
+    public static final String SHARED_PREFS_DIFFICULTY = "difficulty";
     ActivitySettingsBinding mBinding;
-    Game game;
+    //Game game;
     SharedPreferences sharedPrefs;
 
     public static void start(Context context){
@@ -30,8 +28,8 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_settings);
-        game = GameSingleton.getInstance(this);
-        sharedPrefs = getSharedPreferences("game_data", Context.MODE_PRIVATE);
+        //game = GameSingleton.getInstance(this);
+        sharedPrefs = getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
         setRadioGroupFromSharedPrefs();
         setListeners();
     }
@@ -66,7 +64,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void setRadioGroupFromSharedPrefs(){
         int selectedRadioButtonId = -1;
-        int difficulty = sharedPrefs.getInt("difficulty", Game.Difficulty.EASY.ordinal());
+        int difficulty = sharedPrefs.getInt(SHARED_PREFS_DIFFICULTY, Game.Difficulty.EASY.ordinal());
 
         if(difficulty == Game.Difficulty.EASY.ordinal()){
             selectedRadioButtonId = R.id.easyRadioButton;

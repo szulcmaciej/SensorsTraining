@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">SensorsTraining</string>
+    <string name="app_name">Wobble!</string>
     <string name="score">Score </string>
-    <string name="play">Play</string>
+    <string name="play">PLAY</string>
     <string name="restart">Restart</string>
     <string name="pause">Pause</string>
     <string name="settings">Settings</string>
@@ -11,5 +11,10 @@
     <string name="hard">Hard</string>
     <string name="extreme">Extreme</string>
     <string name="highscore">Highscore</string>
-    <string name="game_over">Game Over</string>
+    <string name="game_over">GAME OVER</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="highscores">HIGHSCORES</string>
+    <string name="retry">RETRY</string>
+    <string name="menu">MENU</string>
+    <string name="new_highscore">NEW HIGHSCORE</string>
 </resources>

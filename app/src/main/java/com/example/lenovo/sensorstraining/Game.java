@@ -11,25 +11,42 @@ import java.util.Random;
  */
 
 public class Game {
-    static final float DEFAULT_TOTAL_TIME_SECONDS = 40;
-    static final float DEFAULT_ADDED_TIME_ON_HIT = 0.5f;
-    static final int DEFAULT_POINTS_PER_HIT = 10;
-    static final int DEFAULT_TARGET_RANGE = 200;
-    static final int DEFAULT_TARGET_RADIUS = 30;
-    static final int DEFAULT_PLAYER_RADIUS = 12;
+    public static final int PLAYER_RADIUS_EASY = 22;
+    public static final float ADDED_TIME_ON_HIT_EASY = 0.5f;
+    public static final int TARGET_RADIUS_EASY = 40;
+    public static final int TARGET_RANGE_EASY = 180;
+    public static final int TOTAL_TIME_SECONDS_EASY = 30;
+    public static final int PLAYER_RADIUS_MEDIUM = 12;
+    public static final float ADDED_TIME_ON_HIT_MEDIUM = 0.5f;
+    public static final int TARGET_RADIUS_MEDIUM = 30;
+    public static final int TARGET_RANGE_MEDIUM = 210;
+    public static final int TOTAL_TIME_SECONDS_MEDIUM = 30;
+    public static final int PLAYER_RADIUS_HARD = 10;
+    public static final float ADDED_TIME_ON_HIT_HARD = 0.5f;
+    public static final int TARGET_RADIUS_HARD = 25;
+    public static final int TARGET_RANGE_HARD = 250;
+    public static final int TOTAL_TIME_SECONDS_HARD = 20;
+    public static final int PLAYER_RADIUS_EXTREME = 8;
+    public static final float ADDED_TIME_ON_HIT_EXTREME = 0.5f;
+    public static final int TARGET_RADIUS_EXTREME = 15;
+    public static final int TARGET_RANGE_EXTREME = 250;
+    public static final int TOTAL_TIME_SECONDS_EXTREME = 10;
 
-    private float totalTimeSeconds = DEFAULT_TOTAL_TIME_SECONDS;
-    private float addedTimeOnHit = DEFAULT_ADDED_TIME_ON_HIT;
-    private int pointsPerHit = DEFAULT_POINTS_PER_HIT;
-    private int targetRange = DEFAULT_TARGET_RANGE;
-    private int targetRadius = DEFAULT_TARGET_RADIUS;
-    private int playerRadius = DEFAULT_PLAYER_RADIUS;
+    private static final int POINTS_PER_HIT_DEFAULT = 10;
+
+    private float totalTimeSeconds;
+    private float addedTimeOnHit;
+    private int targetRange;
+    private int targetRadius;
+    private int playerRadius;
+
+    private int pointsPerHit = POINTS_PER_HIT_DEFAULT;
 
     public enum  Difficulty{
         EASY,
         MEDIUM,
         HARD,
-        EXTREME
+        EXTREME;
     }
 
 
@@ -79,35 +96,35 @@ public class Game {
     private void setDifficulty(int difficulty) {
         if(difficulty == Game.Difficulty.EASY.ordinal()){
             this.difficulty = Difficulty.EASY;
-            setPlayerRadius(22);
-            setAddedTimeOnHit(0.5f);
-            setTargetRadius(40);
-            setTargetRange(180);
-            setTotalTimeSeconds(30);
+            setPlayerRadius(PLAYER_RADIUS_EASY);
+            setAddedTimeOnHit(ADDED_TIME_ON_HIT_EASY);
+            setTargetRadius(TARGET_RADIUS_EASY);
+            setTargetRange(TARGET_RANGE_EASY);
+            setTotalTimeSeconds(TOTAL_TIME_SECONDS_EASY);
         }
         if(difficulty == Game.Difficulty.MEDIUM.ordinal()){
             this.difficulty = Difficulty.MEDIUM;
-            setPlayerRadius(12);
-            setAddedTimeOnHit(0.5f);
-            setTargetRadius(30);
-            setTargetRange(210);
-            setTotalTimeSeconds(30);
+            setPlayerRadius(PLAYER_RADIUS_MEDIUM);
+            setAddedTimeOnHit(ADDED_TIME_ON_HIT_MEDIUM);
+            setTargetRadius(TARGET_RADIUS_MEDIUM);
+            setTargetRange(TARGET_RANGE_MEDIUM);
+            setTotalTimeSeconds(TOTAL_TIME_SECONDS_MEDIUM);
         }
         if(difficulty == Game.Difficulty.HARD.ordinal()){
             this.difficulty = Difficulty.HARD;
-            setPlayerRadius(10);
-            setAddedTimeOnHit(0.5f);
-            setTargetRadius(25);
-            setTargetRange(250);
-            setTotalTimeSeconds(20);
+            setPlayerRadius(PLAYER_RADIUS_HARD);
+            setAddedTimeOnHit(ADDED_TIME_ON_HIT_HARD);
+            setTargetRadius(TARGET_RADIUS_HARD);
+            setTargetRange(TARGET_RANGE_HARD);
+            setTotalTimeSeconds(TOTAL_TIME_SECONDS_HARD);
         }
         if(difficulty == Difficulty.EXTREME.ordinal()){
             this.difficulty = Difficulty.EXTREME;
-            setPlayerRadius(8);
-            setAddedTimeOnHit(0.5f);
-            setTargetRadius(15);
-            setTargetRange(250);
-            setTotalTimeSeconds(10);
+            setPlayerRadius(PLAYER_RADIUS_EXTREME);
+            setAddedTimeOnHit(ADDED_TIME_ON_HIT_EXTREME);
+            setTargetRadius(TARGET_RADIUS_EXTREME);
+            setTargetRange(TARGET_RANGE_EXTREME);
+            setTotalTimeSeconds(TOTAL_TIME_SECONDS_EXTREME);
         }
     }
 
@@ -135,6 +152,7 @@ public class Game {
         int newX = random.nextInt(targetRange * 2) - targetRange;
         int newY = random.nextInt(targetRange * 2) - targetRange;
         target.set(newX, newY);
+        //target.set(targetRange, targetRange);
 
         if(target.distance(player) < targetRadius + playerRadius){
             setNewTarget();

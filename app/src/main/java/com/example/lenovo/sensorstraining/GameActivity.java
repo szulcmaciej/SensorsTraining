@@ -22,6 +22,9 @@ import java.util.Locale;
 
 public class GameActivity extends AppCompatActivity implements SensorEventListener{
 
+    public static final String SHARED_PREFS_NAME = "game_data";
+    public static final String SHARED_PREFS_DIFFICULTY = "difficulty";
+
     private ActivityGameBinding mBinding;
     private SensorManager sensorManager;
     private Sensor accelerometer;
@@ -40,22 +43,17 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_game);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        sharedPrefs = getSharedPreferences("game_data", Context.MODE_PRIVATE);
+        sharedPrefs = getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
         game = GameSingleton.getInstance(getApplicationContext());
-        int difficulty = sharedPrefs.getInt("difficulty", Game.Difficulty.EASY.ordinal());
+        int difficulty = sharedPrefs.getInt(SHARED_PREFS_DIFFICULTY, Game.Difficulty.EASY.ordinal());
         game.onStart(difficulty);
-        mBinding.drawView.setBackgroundColor(Color.GRAY);
+        mBinding.drawView.setBackgroundColor(getResources().getColor(R.color.darkGray));
         resumeGame();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-/*
-        if (accelerometer != null) {
-            sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_FASTEST);
-        }
-*/
         //game.resume();
     }
 
@@ -80,7 +78,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.restart :
-                int difficulty = sharedPrefs.getInt("difficulty", Game.Difficulty.EASY.ordinal());
+                int difficulty = sharedPrefs.getInt(SHARED_PREFS_DIFFICULTY, Game.Difficulty.EASY.ordinal());
                 game.onStart(difficulty);
                 resumeGame();
                 return true;
@@ -119,7 +117,6 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
             updateUI(game.getPlayer().x, game.getPlayer().y);
         }
         else {
-            //TODO rób coś jak game over
             sensorManager.unregisterListener(this);
             GameOverActivity.start(this, game.getPoints(), game.getDifficulty());
         }
@@ -140,7 +137,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     }
 
     private void updateUI(int sensorX, int sensorY){
-        mBinding.score.setText(String.format(Locale.getDefault(), "%s%d", getResources().getString(R.string.score), game.getPoints()));
+        mBinding.score.setText(String.format(Locale.getDefault(), "%s %d", getResources().getString(R.string.score), game.getPoints()));
         mBinding.timeRemaining.setText(new DecimalFormat("#.#").format(game.getTimeRemainingMilis() / 1000f));
         draw(sensorX, sensorY);
     }

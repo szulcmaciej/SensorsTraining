@@ -19,22 +19,22 @@ import com.example.lenovo.sensorstraining.databinding.ActivityMainBinding;
 //TODO na za tydzień koncept
 //TODO pomysł: przerobić apkę z akcelerometrem na grę w trafianie w punkty przez machanie telefonem, w menu ustawiać trudność (wielkość punktów, rozrzut punktów), kolory, itp.
 
+//TODO about activity
+//TODO (?) share button w GameOverActivity
+//DONE (not really) zmienić styl (np pozostały czas i punkty jakąś fajną czcionką?, pomyśleć nad kolorami)
+//DONE porządek w layoutach (stringi, style)
 //DONE dodać poziom trudności extreme i hard zrobić łatwiejszy
 //DONE w menu mają być 2 dodatkowe ikonki (jedna widoczna zawsze, druga opcjonalnie, na lewo od trzech kropek)
-//TODO jakiś popup albo aktywność Game Over + dźwięk
+//DONE jakiś popup albo aktywność Game Over + dźwięk
 //DONE dodać highscores (w sharedprefsach 1 highscore dla każdego poziomu trudności))
 //DONE highscores activity
 //DONE game over activity + bundle z wynikiem
-//TODO author activity
-//TODO wartości trudności wywalić do osobnej klasy
-//TODO zmienić styl (np pozostały czas i punkty jakąś fajną czcionką?, pomyśleć nad kolorami)
-//TODO może zmienić metodę setNewTarget() na efektywniejszą?
-//TODO dźwięki! dużo dźwięków! jeszcze więcej dźwięków!
-//TODO dźwięki przy game over, new highscore, jakaś zapętlona muzyczka w tle, dźwięk przy początku gry
-//TODO dodać logo apki
-//TODO ikonka i nazwa
-//TODO porządek w layoutach (stringi, style)
-//TODO (?) share button w GameOverActivity
+//DONE wartości trudności do stałych
+//DONE dźwięki! dużo dźwięków! jeszcze więcej dźwięków!
+//DONE dźwięki przy game over, new highscore, jakaś zapętlona muzyczka w tle, dźwięk przy początku gry
+//DONE dodać logo apki
+//DONE ikonka i nazwa
+//NOTTODO może zmienić metodę setNewTarget() na efektywniejszą?
 //NOTTODO jakiś efekt (animacja?) przy hicie/pojawianiu się nowego celu
 //DONE menu ma mieć link do ustawień, stronę o autorze, highscores?
 //DONE aktywność z ustawieniami
@@ -70,6 +70,9 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.settings :
                 SettingsActivity.start(context);
+                return true;
+            case R.id.about :
+                AboutActivity.start(context);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
