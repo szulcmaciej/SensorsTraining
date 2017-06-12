@@ -1,9 +1,11 @@
-package com.example.lenovo.sensorstraining;
+package com.example.lenovo.sensorstraining.activities;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.lenovo.sensorstraining.R;
 
 public class AboutActivity extends AppCompatActivity {
 

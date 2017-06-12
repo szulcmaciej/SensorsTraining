@@ -1,7 +1,6 @@
-package com.example.lenovo.sensorstraining;
+package com.example.lenovo.sensorstraining.activities;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.lenovo.sensorstraining.R;
 import com.example.lenovo.sensorstraining.databinding.ActivityMainBinding;
 
 //NASTĘPNA APKA

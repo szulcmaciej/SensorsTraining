@@ -1,10 +1,9 @@
-package com.example.lenovo.sensorstraining;
+package com.example.lenovo.sensorstraining.activities;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
-import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -15,6 +14,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.example.lenovo.sensorstraining.game_utility.Game;
+import com.example.lenovo.sensorstraining.game_utility.GameSingleton;
+import com.example.lenovo.sensorstraining.R;
 import com.example.lenovo.sensorstraining.databinding.ActivityGameBinding;
 
 import java.text.DecimalFormat;

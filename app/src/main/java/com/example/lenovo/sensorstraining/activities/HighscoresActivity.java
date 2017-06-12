@@ -1,13 +1,14 @@
-package com.example.lenovo.sensorstraining;
+package com.example.lenovo.sensorstraining.activities;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
-import android.support.annotation.IntegerRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.lenovo.sensorstraining.game_utility.Game;
+import com.example.lenovo.sensorstraining.R;
 import com.example.lenovo.sensorstraining.databinding.ActivityHighscoresBinding;
 
 public class HighscoresActivity extends AppCompatActivity {

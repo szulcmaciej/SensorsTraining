@@ -1,8 +1,10 @@
-package com.example.lenovo.sensorstraining;
+package com.example.lenovo.sensorstraining.game_utility;
 
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.SystemClock;
+
+import com.example.lenovo.sensorstraining.R;
 
 import java.util.Random;
 

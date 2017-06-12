@@ -1,4 +1,4 @@
-package com.example.lenovo.sensorstraining;
+package com.example.lenovo.sensorstraining.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.lenovo.sensorstraining.game_utility.Game;
+import com.example.lenovo.sensorstraining.R;
 import com.example.lenovo.sensorstraining.databinding.ActivityGameOverBinding;
 
 public class GameOverActivity extends AppCompatActivity {
