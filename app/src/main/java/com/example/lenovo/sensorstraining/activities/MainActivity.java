@@ -12,15 +12,9 @@ import android.view.View;
 import com.example.lenovo.sensorstraining.R;
 import com.example.lenovo.sensorstraining.databinding.ActivityMainBinding;
 
-//NASTĘPNA APKA
-//TODO ma być MENU jak w ćwiczeniu 5 na eportalu
-//TODO mają być sensory, akcelerometr + coś, np. czujnik światła, akcelerometr do przerzucania na kolejny obrazek
-//TODO przykłady: galeria zdjęć, miecz świetlny :), jakiś cookie clicker, może gra w machanie?
-//TODO na za tydzień koncept
-//TODO pomysł: przerobić apkę z akcelerometrem na grę w trafianie w punkty przez machanie telefonem, w menu ustawiać trudność (wielkość punktów, rozrzut punktów), kolory, itp.
 
-//TODO about activity
 //TODO (?) share button w GameOverActivity
+//DONE about activity
 //DONE (not really) zmienić styl (np pozostały czas i punkty jakąś fajną czcionką?, pomyśleć nad kolorami)
 //DONE porządek w layoutach (stringi, style)
 //DONE dodać poziom trudności extreme i hard zrobić łatwiejszy
@@ -44,6 +38,9 @@ import com.example.lenovo.sensorstraining.databinding.ActivityMainBinding;
 //DONE przerobić czarną krechę na cieńszą, ale z czymś na końcu (czerwonym kółkiem?)
 //DONE ekran ma się nie wygaszać w czasie gry
 //DONE naprawić restart, bo nie działa po skończeniu czasu (może jakoś połączyć z game over?)
+
+//TODO przenieść ustawianie trudności na przycisk albo do main activity
+//TODO how to play (przycisk w main activity + osobna aktywność?)
 
 public class MainActivity extends AppCompatActivity {
 
@@ -92,6 +89,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 HighscoresActivity.start(context);
+            }
+        });
+
+        mBinding.settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SettingsActivity.start(context);
             }
         });
     }
