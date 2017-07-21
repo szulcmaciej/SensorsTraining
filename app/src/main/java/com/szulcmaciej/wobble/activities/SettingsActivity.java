@@ -19,6 +19,7 @@ public class SettingsActivity extends AppCompatActivity {
     public static final String SHARED_PREFS_NAME = "game_data";
     public static final String SHARED_PREFS_DIFFICULTY = "difficulty";
     public static final String SHARED_PREFS_SOUND = "sound";
+    private static final String SHARED_PREFS_VIBRATION = "vibration";
     ActivitySettingsBinding mBinding;
     //Game game;
     SharedPreferences sharedPrefs;
@@ -70,10 +71,23 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             }
         });
+
+        mBinding.vibrationSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                saveVibrationEnabledToSharedPrefs(isChecked);
+                if (isChecked) {
+                    mBinding.vibrationSwitch.setText(R.string.on);
+                } else {
+                    mBinding.vibrationSwitch.setText(R.string.off);
+                }
+            }
+        });
     }
     private void setControlsFromSharedPrefs(){
         setRadioGroupFromSharedPrefs();
         setSoundSwitchFromSharedPrefs();
+        setVibrationSwitchFromSharedPrefs();
     }
 
     private void saveDifficultyToSharedPrefs(Game.Difficulty difficulty){
@@ -84,6 +98,11 @@ public class SettingsActivity extends AppCompatActivity {
     private void saveSoundEnabledToSharedPrefs(boolean soundEnabled){
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putBoolean(SHARED_PREFS_SOUND, soundEnabled);
+        editor.apply();
+    }
+    private void saveVibrationEnabledToSharedPrefs(boolean vibrationEnabled){
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putBoolean(SHARED_PREFS_VIBRATION, vibrationEnabled);
         editor.apply();
     }
 
@@ -113,6 +132,15 @@ public class SettingsActivity extends AppCompatActivity {
             mBinding.soundSwitch.setText(R.string.on);
         } else {
             mBinding.soundSwitch.setText(R.string.off);
+        }
+    }
+    private void setVibrationSwitchFromSharedPrefs(){
+        boolean vibrationEnabled = sharedPrefs.getBoolean(SHARED_PREFS_VIBRATION, true);
+        mBinding.vibrationSwitch.setChecked(vibrationEnabled);
+        if (vibrationEnabled) {
+            mBinding.vibrationSwitch.setText(R.string.on);
+        } else {
+            mBinding.vibrationSwitch.setText(R.string.off);
         }
     }
 

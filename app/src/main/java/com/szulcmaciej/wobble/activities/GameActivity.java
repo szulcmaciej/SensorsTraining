@@ -8,6 +8,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -27,6 +28,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     public static final String SHARED_PREFS_NAME = "game_data";
     public static final String SHARED_PREFS_DIFFICULTY = "difficulty";
     public static final String SHARED_PREFS_SOUND = "sound";
+    private static final String SHARED_PREFS_VIBRATION = "vibration";
 
     private ActivityGameBinding mBinding;
     private SensorManager sensorManager;
@@ -48,11 +50,16 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sharedPrefs = getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
         game = GameSingleton.getInstance(getApplicationContext());
-        int difficulty = sharedPrefs.getInt(SHARED_PREFS_DIFFICULTY, Game.Difficulty.EASY.ordinal());
-        boolean soundEnabled = sharedPrefs.getBoolean(SHARED_PREFS_SOUND, true);
-        game.onStart(difficulty, soundEnabled);
+        startGame();
         mBinding.drawView.setBackgroundColor(getResources().getColor(R.color.darkGray));
         resumeGame();
+    }
+
+    private void startGame() {
+        int difficulty = sharedPrefs.getInt(SHARED_PREFS_DIFFICULTY, Game.Difficulty.EASY.ordinal());
+        boolean soundEnabled = sharedPrefs.getBoolean(SHARED_PREFS_SOUND, true);
+        boolean vibrationEnabled = sharedPrefs.getBoolean(SHARED_PREFS_VIBRATION, true);
+        game.onStart(difficulty, soundEnabled, vibrationEnabled);
     }
 
     @Override
@@ -82,9 +89,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.restart :
-                int difficulty = sharedPrefs.getInt(SHARED_PREFS_DIFFICULTY, Game.Difficulty.EASY.ordinal());
-                boolean soundEnabled = sharedPrefs.getBoolean(SHARED_PREFS_SOUND, true);
-                game.onStart(difficulty, soundEnabled);
+                startGame();
                 resumeGame();
                 return true;
             case R.id.pause :

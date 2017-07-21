@@ -3,6 +3,7 @@
     package="com.szulcmaciej.wobble.sensorstraining">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:name="com.szulcmaciej.wobble.MyApplication"
@@ -44,7 +45,9 @@
             android:name="com.szulcmaciej.wobble.activities.AboutActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name="com.szulcmaciej.wobble.activities.HowToPlayActivity"></activity>
+        <activity android:name="com.szulcmaciej.wobble.activities.HowToPlayActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

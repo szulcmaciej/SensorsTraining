@@ -3,6 +3,7 @@ package com.szulcmaciej.wobble.game_utility;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.SystemClock;
+import android.os.Vibrator;
 
 import com.szulcmaciej.wobble.sensorstraining.R;
 
@@ -35,6 +36,7 @@ public class Game {
     public static final int TOTAL_TIME_SECONDS_EXTREME = 10;
 
     private static final int POINTS_PER_HIT_DEFAULT = 10;
+    private static final long VIBRATOR_TIME_MILIS = 20;
 
     private float totalTimeSeconds;
     private float addedTimeOnHit;
@@ -62,12 +64,14 @@ public class Game {
     private boolean isPaused;
     private Difficulty difficulty;
     private boolean soundEnabled;
+    private boolean vibrationEnabled;
 
     private MyPoint target;
     private MyPoint player;
     
     private static MediaPlayer hitSoundPlayer;
     private MediaPlayer backgroundMusicPlayer;
+    private Vibrator vibrator;
     private Random random;
     private Context context;
 
@@ -76,18 +80,12 @@ public class Game {
         random = new Random();
         target = new MyPoint();
         player = new MyPoint();
-/*
-        hitSoundPlayer = MediaPlayer.create(context, R.raw.hit);
-        //hitSoundPlayer = MediaPlayer.create(context, R.raw.gunshot);
-        backgroundMusicPlayer = MediaPlayer.create(context, R.raw.background_loop);
-        backgroundMusicPlayer.setLooping(true);
-        backgroundMusicPlayer.start();
-*/
     }
 
-    public void onStart(int difficulty, boolean soundEnabled){
+    public void onStart(int difficulty, boolean soundEnabled, boolean vibrationEnabled){
         setDifficulty(difficulty);
         this.soundEnabled = soundEnabled;
+        this.vibrationEnabled = vibrationEnabled;
         previousTimeMilis = SystemClock.uptimeMillis();
         timeRemainingMilis = (long) (1000 * totalTimeSeconds);
         setNewTarget();
@@ -103,6 +101,10 @@ public class Game {
             backgroundMusicPlayer = MediaPlayer.create(context, R.raw.background_loop);
             backgroundMusicPlayer.setLooping(true);
             backgroundMusicPlayer.start();
+        }
+
+        if(vibrationEnabled){
+            vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         }
     }
 
@@ -185,6 +187,10 @@ public class Game {
         setNewTarget();
         if (soundEnabled) {
             playHitSound();
+        }
+
+        if (vibrationEnabled) {
+            vibrator.vibrate(VIBRATOR_TIME_MILIS);
         }
     }
 
