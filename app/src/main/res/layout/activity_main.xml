@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.lenovo.sensorstraining.activities.MainActivity">
+    tools:context="com.szulcmaciej.wobble.activities.MainActivity">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/mainLayout"
@@ -55,7 +55,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
-            android:text="How to play"
+            android:text="@string/how_to_play"
+            android:textAppearance="@style/ButtonFont"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/highscoresButton" />
@@ -67,7 +68,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
-            android:text="Settings"
+            android:text="@string/settings_caps"
+            android:textAppearance="@style/ButtonFont"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/howToPlayButton" />

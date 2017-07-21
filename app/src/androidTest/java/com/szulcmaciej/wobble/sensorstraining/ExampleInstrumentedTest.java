@@ -1,4 +1,4 @@
-package com.example.lenovo.sensorstraining;
+package com.szulcmaciej.wobble.sensorstraining;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

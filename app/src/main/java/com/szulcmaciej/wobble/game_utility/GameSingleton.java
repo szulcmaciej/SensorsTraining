@@ -1,4 +1,4 @@
-package com.example.lenovo.sensorstraining.game_utility;
+package com.szulcmaciej.wobble.game_utility;
 
 import android.content.Context;
 

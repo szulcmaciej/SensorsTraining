@@ -1,4 +1,4 @@
-package com.example.lenovo.sensorstraining.activities;
+package com.szulcmaciej.wobble.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,9 +7,9 @@ import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.lenovo.sensorstraining.game_utility.Game;
-import com.example.lenovo.sensorstraining.R;
-import com.example.lenovo.sensorstraining.databinding.ActivityHighscoresBinding;
+import com.szulcmaciej.wobble.game_utility.Game;
+import com.szulcmaciej.wobble.sensorstraining.R;
+import com.szulcmaciej.wobble.sensorstraining.databinding.ActivityHighscoresBinding;
 
 public class HighscoresActivity extends AppCompatActivity {
 

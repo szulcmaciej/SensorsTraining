@@ -18,4 +18,9 @@
     <string name="menu">MENU</string>
     <string name="new_highscore">NEW HIGHSCORE</string>
     <string name="copyright">© Maciej Szulc</string>
+    <string name="how_to_play">HOW TO PLAY</string>
+    <string name="settings_caps">SETTINGS</string>
+    <string name="sound">Sound</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
 </resources>

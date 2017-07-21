@@ -1,4 +1,4 @@
-package com.example.lenovo.sensorstraining.activities;
+package com.szulcmaciej.wobble.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,17 +9,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.lenovo.sensorstraining.game_utility.Game;
-import com.example.lenovo.sensorstraining.R;
-import com.example.lenovo.sensorstraining.databinding.ActivityGameOverBinding;
+import com.szulcmaciej.wobble.game_utility.Game;
+import com.szulcmaciej.wobble.sensorstraining.R;
+import com.szulcmaciej.wobble.sensorstraining.databinding.ActivityGameOverBinding;
 
 public class GameOverActivity extends AppCompatActivity {
 
+    public static final String SHARED_PREFS_SOUND = "sound";
     private int score;
     private Game.Difficulty difficulty;
     boolean isNewHighscore;
 
     private MediaPlayer mediaPlayer;
+    boolean soundEnabled;
 
     ActivityGameOverBinding mBinding;
     SharedPreferences sharedPrefs;
@@ -42,7 +44,10 @@ public class GameOverActivity extends AppCompatActivity {
         setHighscoreLabelVisibleAndSaveHighscoreIfNewHighscore();
         setTexts();
         setButtonListeners();
-        playSound();
+        soundEnabled = sharedPrefs.getBoolean(SHARED_PREFS_SOUND, true);
+        if(soundEnabled){
+            playSound();
+        }
     }
 
     private void playSound() {

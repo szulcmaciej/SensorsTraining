@@ -1,4 +1,4 @@
-package com.example.lenovo.sensorstraining.activities;
+package com.szulcmaciej.wobble.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,16 +7,18 @@ import android.databinding.DataBindingUtil;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.CompoundButton;
 import android.widget.RadioGroup;
 
-import com.example.lenovo.sensorstraining.game_utility.Game;
-import com.example.lenovo.sensorstraining.R;
-import com.example.lenovo.sensorstraining.databinding.ActivitySettingsBinding;
+import com.szulcmaciej.wobble.game_utility.Game;
+import com.szulcmaciej.wobble.sensorstraining.R;
+import com.szulcmaciej.wobble.sensorstraining.databinding.ActivitySettingsBinding;
 
 public class SettingsActivity extends AppCompatActivity {
 
     public static final String SHARED_PREFS_NAME = "game_data";
     public static final String SHARED_PREFS_DIFFICULTY = "difficulty";
+    public static final String SHARED_PREFS_SOUND = "sound";
     ActivitySettingsBinding mBinding;
     //Game game;
     SharedPreferences sharedPrefs;
@@ -32,7 +34,7 @@ public class SettingsActivity extends AppCompatActivity {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_settings);
         //game = GameSingleton.getInstance(this);
         sharedPrefs = getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
-        setRadioGroupFromSharedPrefs();
+        setControlsFromSharedPrefs();
         setListeners();
     }
 
@@ -56,11 +58,32 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             }
         });
+
+        mBinding.soundSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                saveSoundEnabledToSharedPrefs(isChecked);
+                if (isChecked) {
+                    mBinding.soundSwitch.setText(R.string.on);
+                } else {
+                    mBinding.soundSwitch.setText(R.string.off);
+                }
+            }
+        });
+    }
+    private void setControlsFromSharedPrefs(){
+        setRadioGroupFromSharedPrefs();
+        setSoundSwitchFromSharedPrefs();
     }
 
     private void saveDifficultyToSharedPrefs(Game.Difficulty difficulty){
         SharedPreferences.Editor editor = sharedPrefs.edit();
-        editor.putInt("difficulty", difficulty.ordinal());
+        editor.putInt(SHARED_PREFS_DIFFICULTY, difficulty.ordinal());
+        editor.apply();
+    }
+    private void saveSoundEnabledToSharedPrefs(boolean soundEnabled){
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putBoolean(SHARED_PREFS_SOUND, soundEnabled);
         editor.apply();
     }
 
@@ -82,6 +105,15 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         mBinding.difficultyRadioGroup.check(selectedRadioButtonId);
+    }
+    private void setSoundSwitchFromSharedPrefs(){
+        boolean soundEnabled = sharedPrefs.getBoolean(SHARED_PREFS_SOUND, true);
+        mBinding.soundSwitch.setChecked(soundEnabled);
+        if (soundEnabled) {
+            mBinding.soundSwitch.setText(R.string.on);
+        } else {
+            mBinding.soundSwitch.setText(R.string.off);
+        }
     }
 
 }

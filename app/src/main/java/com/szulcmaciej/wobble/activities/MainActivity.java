@@ -1,4 +1,4 @@
-package com.example.lenovo.sensorstraining.activities;
+package com.szulcmaciej.wobble.activities;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -9,8 +9,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.lenovo.sensorstraining.R;
-import com.example.lenovo.sensorstraining.databinding.ActivityMainBinding;
+import com.szulcmaciej.wobble.sensorstraining.R;
+import com.szulcmaciej.wobble.sensorstraining.databinding.ActivityMainBinding;
 
 
 //TODO (?) share button w GameOverActivity
@@ -39,8 +39,9 @@ import com.example.lenovo.sensorstraining.databinding.ActivityMainBinding;
 //DONE ekran ma się nie wygaszać w czasie gry
 //DONE naprawić restart, bo nie działa po skończeniu czasu (może jakoś połączyć z game over?)
 
-//TODO przenieść ustawianie trudności na przycisk albo do main activity
-//TODO how to play (przycisk w main activity + osobna aktywność?)
+//DONE przenieść ustawianie trudności na przycisk albo do main activity
+//DONE how to play (przycisk w main activity + osobna aktywność?)
+//TODO dodać do ustawień wyłączanie dźwięku
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,9 +66,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.settings :
-                SettingsActivity.start(context);
-                return true;
             case R.id.about :
                 AboutActivity.start(context);
                 return true;
@@ -96,6 +94,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SettingsActivity.start(context);
+            }
+        });
+
+        mBinding.howToPlayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HowToPlayActivity.start(context);
             }
         });
     }

@@ -1,10 +1,10 @@
-package com.example.lenovo.sensorstraining.game_utility;
+package com.szulcmaciej.wobble.game_utility;
 
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.SystemClock;
 
-import com.example.lenovo.sensorstraining.R;
+import com.szulcmaciej.wobble.sensorstraining.R;
 
 import java.util.Random;
 
@@ -17,17 +17,17 @@ public class Game {
     public static final float ADDED_TIME_ON_HIT_EASY = 0.5f;
     public static final int TARGET_RADIUS_EASY = 40;
     public static final int TARGET_RANGE_EASY = 180;
-    public static final int TOTAL_TIME_SECONDS_EASY = 30;
+    public static final int TOTAL_TIME_SECONDS_EASY = 10;
     public static final int PLAYER_RADIUS_MEDIUM = 12;
     public static final float ADDED_TIME_ON_HIT_MEDIUM = 0.5f;
     public static final int TARGET_RADIUS_MEDIUM = 30;
     public static final int TARGET_RANGE_MEDIUM = 210;
-    public static final int TOTAL_TIME_SECONDS_MEDIUM = 30;
+    public static final int TOTAL_TIME_SECONDS_MEDIUM = 10;
     public static final int PLAYER_RADIUS_HARD = 10;
     public static final float ADDED_TIME_ON_HIT_HARD = 0.5f;
     public static final int TARGET_RADIUS_HARD = 25;
     public static final int TARGET_RANGE_HARD = 250;
-    public static final int TOTAL_TIME_SECONDS_HARD = 20;
+    public static final int TOTAL_TIME_SECONDS_HARD = 10;
     public static final int PLAYER_RADIUS_EXTREME = 8;
     public static final float ADDED_TIME_ON_HIT_EXTREME = 0.5f;
     public static final int TARGET_RADIUS_EXTREME = 15;
@@ -61,6 +61,7 @@ public class Game {
     private boolean hasStarted;
     private boolean isPaused;
     private Difficulty difficulty;
+    private boolean soundEnabled;
 
     private MyPoint target;
     private MyPoint player;
@@ -75,15 +76,18 @@ public class Game {
         random = new Random();
         target = new MyPoint();
         player = new MyPoint();
+/*
         hitSoundPlayer = MediaPlayer.create(context, R.raw.hit);
         //hitSoundPlayer = MediaPlayer.create(context, R.raw.gunshot);
         backgroundMusicPlayer = MediaPlayer.create(context, R.raw.background_loop);
         backgroundMusicPlayer.setLooping(true);
         backgroundMusicPlayer.start();
+*/
     }
 
-    public void onStart(int difficulty){
+    public void onStart(int difficulty, boolean soundEnabled){
         setDifficulty(difficulty);
+        this.soundEnabled = soundEnabled;
         previousTimeMilis = SystemClock.uptimeMillis();
         timeRemainingMilis = (long) (1000 * totalTimeSeconds);
         setNewTarget();
@@ -92,6 +96,14 @@ public class Game {
         elapsedTimeMilis = 0;
         gameOver = false;
         isPaused = false;
+
+        if (soundEnabled) {
+            hitSoundPlayer = MediaPlayer.create(context, R.raw.hit);
+            //hitSoundPlayer = MediaPlayer.create(context, R.raw.gunshot);
+            backgroundMusicPlayer = MediaPlayer.create(context, R.raw.background_loop);
+            backgroundMusicPlayer.setLooping(true);
+            backgroundMusicPlayer.start();
+        }
     }
 
 
@@ -171,7 +183,9 @@ public class Game {
         points += pointsPerHit;
         timeRemainingMilis += ((long) (addedTimeOnHit * 1000)) ;
         setNewTarget();
-        playHitSound();
+        if (soundEnabled) {
+            playHitSound();
+        }
     }
 
     public int getTargetRadius() {
@@ -196,27 +210,23 @@ public class Game {
 
     public void pause(){
         isPaused = true;
-        backgroundMusicPlayer.stop();
+        if (soundEnabled) {
+            backgroundMusicPlayer.stop();
+        }
     }
 
     public void resume(){
         previousTimeMilis = SystemClock.uptimeMillis();
         isPaused = false;
-/*
-        if(backgroundMusicPlayer.isPlaying()){
+
+        if (soundEnabled) {
             backgroundMusicPlayer.stop();
             backgroundMusicPlayer.release();
             backgroundMusicPlayer = MediaPlayer.create(context, R.raw.background_loop);
             backgroundMusicPlayer.setLooping(true);
+
+            backgroundMusicPlayer.start();
         }
-*/
-
-        backgroundMusicPlayer.stop();
-        backgroundMusicPlayer.release();
-        backgroundMusicPlayer = MediaPlayer.create(context, R.raw.background_loop);
-        backgroundMusicPlayer.setLooping(true);
-
-        backgroundMusicPlayer.start();
     }
 
     private void playHitSound(){

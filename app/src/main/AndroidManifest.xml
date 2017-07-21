@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.lenovo.sensorstraining">
+    package="com.szulcmaciej.wobble.sensorstraining">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".MyApplication"
+        android:name="com.szulcmaciej.wobble.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.MainActivity"
+            android:name="com.szulcmaciej.wobble.activities.MainActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -23,26 +23,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.GameActivity"
+            android:name="com.szulcmaciej.wobble.activities.GameActivity"
             android:configChanges="orientation"
             android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.SettingsActivity"
+            android:name="com.szulcmaciej.wobble.activities.SettingsActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.HighscoresActivity"
+            android:name="com.szulcmaciej.wobble.activities.HighscoresActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.GameOverActivity"
+            android:name="com.szulcmaciej.wobble.activities.GameOverActivity"
             android:configChanges="orientation"
             android:noHistory="true"
             android:screenOrientation="portrait" />
-        <activity android:name=".activities.AboutActivity"
+        <activity
+            android:name="com.szulcmaciej.wobble.activities.AboutActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+        <activity android:name="com.szulcmaciej.wobble.activities.HowToPlayActivity"></activity>
     </application>
 
 </manifest>

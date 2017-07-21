@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.lenovo.sensorstraining.activities.SettingsActivity">
+    tools:context="com.szulcmaciej.wobble.activities.SettingsActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -80,6 +80,29 @@
             app:layout_constraintTop_toBottomOf="@+id/hardRadioButton" />
 
     </RadioGroup>
+
+        <TextView
+            android:id="@+id/soundLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sound"
+            style="@style/WhiteFont.Big"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/difficultyRadioGroup" />
+
+        <Switch
+            android:id="@+id/soundSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/on"
+            style="@style/WhiteFont.Medium"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/soundLabel"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
 
     </android.support.constraint.ConstraintLayout>
 </layout>

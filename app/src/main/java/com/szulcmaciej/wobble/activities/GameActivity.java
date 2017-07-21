@@ -1,4 +1,4 @@
-package com.example.lenovo.sensorstraining.activities;
+package com.szulcmaciej.wobble.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,10 +14,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.example.lenovo.sensorstraining.game_utility.Game;
-import com.example.lenovo.sensorstraining.game_utility.GameSingleton;
-import com.example.lenovo.sensorstraining.R;
-import com.example.lenovo.sensorstraining.databinding.ActivityGameBinding;
+import com.szulcmaciej.wobble.game_utility.Game;
+import com.szulcmaciej.wobble.game_utility.GameSingleton;
+import com.szulcmaciej.wobble.sensorstraining.R;
+import com.szulcmaciej.wobble.sensorstraining.databinding.ActivityGameBinding;
 
 import java.text.DecimalFormat;
 import java.util.Locale;
@@ -26,6 +26,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
 
     public static final String SHARED_PREFS_NAME = "game_data";
     public static final String SHARED_PREFS_DIFFICULTY = "difficulty";
+    public static final String SHARED_PREFS_SOUND = "sound";
 
     private ActivityGameBinding mBinding;
     private SensorManager sensorManager;
@@ -48,7 +49,8 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         sharedPrefs = getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
         game = GameSingleton.getInstance(getApplicationContext());
         int difficulty = sharedPrefs.getInt(SHARED_PREFS_DIFFICULTY, Game.Difficulty.EASY.ordinal());
-        game.onStart(difficulty);
+        boolean soundEnabled = sharedPrefs.getBoolean(SHARED_PREFS_SOUND, true);
+        game.onStart(difficulty, soundEnabled);
         mBinding.drawView.setBackgroundColor(getResources().getColor(R.color.darkGray));
         resumeGame();
     }
@@ -81,7 +83,8 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
         switch (item.getItemId()){
             case R.id.restart :
                 int difficulty = sharedPrefs.getInt(SHARED_PREFS_DIFFICULTY, Game.Difficulty.EASY.ordinal());
-                game.onStart(difficulty);
+                boolean soundEnabled = sharedPrefs.getBoolean(SHARED_PREFS_SOUND, true);
+                game.onStart(difficulty, soundEnabled);
                 resumeGame();
                 return true;
             case R.id.pause :
