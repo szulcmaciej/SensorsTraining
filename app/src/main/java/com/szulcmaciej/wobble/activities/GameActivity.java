@@ -148,7 +148,7 @@ public class GameActivity extends AppCompatActivity implements SensorEventListen
 
     private void updateUI(int sensorX, int sensorY){
         mBinding.score.setText(String.format(Locale.getDefault(), "%s %d", getResources().getString(R.string.score), game.getPoints()));
-        mBinding.timeRemaining.setText(new DecimalFormat("#.#").format(game.getTimeRemainingMilis() / 1000f));
+        mBinding.timeRemaining.setText(new DecimalFormat("#0.0").format(game.getTimeRemainingMilis() / 1000f));
         draw(sensorX, sensorY);
     }
 

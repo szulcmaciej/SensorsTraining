@@ -24,4 +24,5 @@
     <string name="on">On</string>
     <string name="off">Off</string>
     <string name="vibration">Vibration</string>
+    <string name="how_to_play_content">Tilt, move, or wobble your device to move the red dot.   Touch yellow dot with red dot to get points and additional time.   At the start you have 10 seconds and every hit adds 0.3s to the remaining time.</string>
 </resources>

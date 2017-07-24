@@ -2,6 +2,7 @@ package com.szulcmaciej.wobble.activities;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +15,8 @@ import com.szulcmaciej.wobble.sensorstraining.databinding.ActivityMainBinding;
 
 
 //TODO (?) share button w GameOverActivity
+//TODO nowe logo (?)
+
 //DONE about activity
 //DONE (not really) zmienić styl (np pozostały czas i punkty jakąś fajną czcionką?, pomyśleć nad kolorami)
 //DONE porządek w layoutach (stringi, style)
@@ -41,7 +44,12 @@ import com.szulcmaciej.wobble.sensorstraining.databinding.ActivityMainBinding;
 
 //DONE przenieść ustawianie trudności na przycisk albo do main activity
 //DONE how to play (przycisk w main activity + osobna aktywność?)
-//TODO dodać do ustawień wyłączanie dźwięku
+//DONE dodać do ustawień wyłączanie dźwięku
+//DONE do wszytkich aktywności dodać back button w action bar
+//DONE muzyka nie przestaje grać przy restarcie
+
+//TODO balansowanie rozgrywki (0.3s za hit?)
+//DONE zrobić żeby czas zawsze wyświetlał się z 1 miejscem dziesiętnym
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         context = this;
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         setButtonListeners();
+
     }
 
     @Override

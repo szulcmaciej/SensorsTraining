@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.IdRes;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.CompoundButton;
 import android.widget.RadioGroup;
 
@@ -23,6 +25,7 @@ public class SettingsActivity extends AppCompatActivity {
     ActivitySettingsBinding mBinding;
     //Game game;
     SharedPreferences sharedPrefs;
+    private ActionBar mActionBar;
 
     public static void start(Context context){
         Intent intent = new Intent(context, SettingsActivity.class);
@@ -37,6 +40,12 @@ public class SettingsActivity extends AppCompatActivity {
         sharedPrefs = getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
         setControlsFromSharedPrefs();
         setListeners();
+        mActionBar = getSupportActionBar();
+        try {
+            mActionBar.setDisplayHomeAsUpEnabled(true);
+            mActionBar.setDisplayShowHomeEnabled(true);
+        } catch (NullPointerException e) {
+        }
     }
 
     private void setListeners() {
@@ -141,6 +150,17 @@ public class SettingsActivity extends AppCompatActivity {
             mBinding.vibrationSwitch.setText(R.string.on);
         } else {
             mBinding.vibrationSwitch.setText(R.string.off);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home :
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 

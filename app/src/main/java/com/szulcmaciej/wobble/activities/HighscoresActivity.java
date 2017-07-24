@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.szulcmaciej.wobble.game_utility.Game;
 import com.szulcmaciej.wobble.sensorstraining.R;
@@ -16,6 +18,7 @@ public class HighscoresActivity extends AppCompatActivity {
     public static final String SHARED_PREFS_NAME = "game_data";
     ActivityHighscoresBinding mBinding;
     SharedPreferences sharedPrefs;
+    private ActionBar mActionBar;
 
     public static void start(Context context){
         Intent intent = new Intent(context, HighscoresActivity.class);
@@ -28,6 +31,12 @@ public class HighscoresActivity extends AppCompatActivity {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_highscores);
         sharedPrefs = getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
         setTexts();
+        mActionBar = getSupportActionBar();
+        try {
+            mActionBar.setDisplayHomeAsUpEnabled(true);
+            mActionBar.setDisplayShowHomeEnabled(true);
+        } catch (NullPointerException e) {
+        }
     }
 
     private void setTexts(){
@@ -52,4 +61,16 @@ public class HighscoresActivity extends AppCompatActivity {
         mBinding.hardValueTextView.setText(hardHighscoreText);
         mBinding.extremeValueTextView.setText(extremeHighscoreText);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home :
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 }
